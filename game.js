@@ -24,10 +24,11 @@ function preload()
 
 function setup()
 {
-    createCanvas(600, innerHeight)
+    createCanvas(900, innerHeight)
+    
 
-    bird = {index: 0, dead: false, pos: createVector(width/2, height/2), vel: createVector(0, 0), acc: createVector(0, 0.05), radius: 35} // this is the RK4 bird
-    bird2 ={index: 1, dead: false, pos: createVector(width/2, height/2), vel: createVector(0, 0), acc: createVector(0, 0.05), radius: 35} 
+    bird = {index: 0, dead: false, pos: createVector(width/3, height/2), vel: createVector(0, 0), acc: createVector(0, 0.05), radius: 35} // this is the RK4 bird
+    bird2 ={index: 1, dead: false, pos: createVector(width/3, height/2), vel: createVector(0, 0), acc: createVector(0, 0.05), radius: 35} 
     
     createNewPillars()
 
@@ -56,7 +57,7 @@ function draw()
     pillars.forEach((pillar, x) => {
         
 
-        if (pillar.x == 300 && pillar.pos == "top") 
+        if (pillar.x == 550 && pillar.pos == "top") 
         {
             createNewPillars()
             // pillars.push(new Pillar({x: 600, y: randY + 300, pos: "bottom"}))
@@ -221,7 +222,7 @@ function displayBackground()
     push()
         noStroke()
         fill(255)
-        for (let x = 0; x < 10; x++) 
+        for (let x = 0; x < 15; x++) 
         {
             ellipse(100 * x, height - 40, 200, 200)
             
@@ -230,7 +231,7 @@ function displayBackground()
         fill("#D7E4CA")
         stroke("#95BFB0")
         strokeWeight(2)
-        for (let x = 0; x < 10; x++) 
+        for (let x = 0; x < 15; x++) 
         {
             rect(100 * x, height - 80, 30, 100)
             rect(100 * x + 30, height - 70, 30, 100)
@@ -243,7 +244,7 @@ function displayBackground()
 
         noStroke()
         fill("#63A668")
-        for (let x = 0; x < 10; x++) 
+        for (let x = 0; x < 15; x++) 
         {
             ellipse(100 * x, height - 10, 200, 100)
         }
@@ -429,43 +430,7 @@ class Pillar
                 noFill()
                 rect(this.x - (pillarDimentions.width * 0.1), this.y, pillarDimentions.width * 1.2, 50)
             }
-
-
-
+            
         pop()
     }
-}
-
-
-
-function findCircleLineIntersections(r, h, k, m, n) {
-    // circle: (x - h)^2 + (y - k)^2 = r^2
-    // line: y = m * x + n
-    // r: circle radius
-    // h: x value of circle centre
-    // k: y value of circle centre
-    // m: slope
-    // n: y-intercept
-
-    // get a, b, c values
-    var a = 1 + sq(m);
-    var b = -h * 2 + (m * (n - k)) * 2;
-    var c = sq(h) + sq(n - k) - sq(r);
-
-    // get discriminant
-    var d = sq(b) - 4 * a * c;
-    if (d >= 0) {
-        // insert into quadratic formula
-        var intersections = [
-            (-b + sqrt(sq(b) - 4 * a * c)) / (2 * a),
-            (-b - sqrt(sq(b) - 4 * a * c)) / (2 * a)
-        ];
-        if (d == 0) {
-            // only 1 intersection
-            return [intersections[0]];
-        }
-        return intersections;
-    }
-    // no intersection
-    return [];
 }
