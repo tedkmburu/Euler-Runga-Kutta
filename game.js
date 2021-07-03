@@ -26,7 +26,6 @@ function setup()
 {
     createCanvas(900, innerHeight)
     
-
     bird = {index: 0, dead: false, pos: createVector(width/3, height/2), vel: createVector(0, 0), acc: createVector(0, 0.05), radius: 35} // this is the RK4 bird
     bird2 ={index: 1, dead: false, pos: createVector(width/3, height/2), vel: createVector(0, 0), acc: createVector(0, 0.05), radius: 35} 
     
@@ -430,7 +429,7 @@ class Pillar
                 noFill()
                 rect(this.x - (pillarDimentions.width * 0.1), this.y, pillarDimentions.width * 1.2, 50)
             }
-            
+
         pop()
     }
 }
